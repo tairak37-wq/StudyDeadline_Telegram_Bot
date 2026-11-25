@@ -1,0 +1,17 @@
+services:
+  - type: worker
+    name: studydeadline
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    disk:
+      name: studydeadline-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: TIMEZONE
+        value: Europe/Berlin
+      - key: DB_PATH
+        value: /var/data/studydeadline.sqlite3
